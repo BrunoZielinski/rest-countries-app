@@ -9,7 +9,7 @@ export const Navbar = () => {
         href="/"
         className="text-lg md:text-2xl font-extrabold cursor-pointer hover:opacity-75"
       >
-        Where in the world?
+        <h1>Where in the world?</h1>
       </Link>
 
       <ThemeSwitcher />

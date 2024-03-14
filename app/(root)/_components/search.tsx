@@ -30,6 +30,7 @@ export const Search = () => {
         autoComplete="off"
         autoCapitalize="off"
         title="Search for a country..."
+        aria-label="Search for a country..."
         placeholder="Search for a country..."
         onChange={e => handleSearch(e.target.value)}
         className="dark:bg-darkBlue shadow-md pl-12"
