@@ -1,7 +1,8 @@
 'use server'
 
-import { Country } from '@/types'
 import { getPlaiceholder } from 'plaiceholder'
+
+import { Country } from '@/types'
 
 export const getCountries = async (): Promise<Country[] | null> => {
   try {
@@ -35,7 +36,7 @@ export const getCountry = async (id: string): Promise<Country | null> => {
   }
 }
 
-export const getCountriesImageBase64 = async (
+export const getCountryImageBase64 = async (
   flags: string,
 ): Promise<string | null> => {
   try {

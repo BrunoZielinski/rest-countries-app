@@ -1,17 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Skeleton } from '@/components/ui/skeleton'
 
 import { Country } from '@/types'
-import { getCountriesImageBase64 } from '@/actions'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface CountryItemProps {
   data: Country
 }
 
-export const CountryItem = async ({ data }: CountryItemProps) => {
-  const base64 = await getCountriesImageBase64(data.flags.png)
-
+export const CountryItem = ({ data }: CountryItemProps) => {
   return (
     <Link
       title="View country details"
@@ -23,11 +20,11 @@ export const CountryItem = async ({ data }: CountryItemProps) => {
         height={200}
         draggable={false}
         placeholder="blur"
-        blurDataURL={base64 || ''}
         src={data.flags.svg || data.flags.png}
         alt={data.flags.alt || data.name.common}
         aria-label={data.flags.alt || data.name.common}
         className="select-none pointer-events-none aspect-[4/2] object-cover w-full"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABaElEQVRIie2VvUoDQRDGv"
       />
 
       <div className="p-4">
