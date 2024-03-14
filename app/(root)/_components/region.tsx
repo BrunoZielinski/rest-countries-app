@@ -36,15 +36,24 @@ export const Region = ({ data }: RegionProps) => {
       onValueChange={onChange}
       value={searchParams.get('region') || 'All'}
     >
-      <SelectTrigger className="sm:w-[180px] dark:bg-darkBlue shadow-md">
+      <SelectTrigger
+        title="Filter by region"
+        className="sm:w-[180px] dark:bg-darkBlue shadow-md"
+      >
         <SelectValue placeholder="Filter by region" />
       </SelectTrigger>
 
       <SelectContent className="dark:bg-darkBlue">
-        <SelectItem value="All">All</SelectItem>
+        <SelectItem title="All regions" value="All">
+          All
+        </SelectItem>
         {data.map((region, index) => {
           return (
-            <SelectItem key={index} value={region}>
+            <SelectItem
+              key={index}
+              value={region}
+              title={`Filter by ${region}`}
+            >
               {region}
             </SelectItem>
           )

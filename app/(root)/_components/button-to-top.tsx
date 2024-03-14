@@ -30,12 +30,15 @@ export const ButtonToTop = () => {
   return (
     <button
       onClick={toTop}
+      title="Go to top"
+      aria-label="Go to top"
       className={cn(
         'fixed bottom-4 right-4 z-50 bg-white dark:bg-darkBlue shadow-md p-2 rounded-full opacity-0 transition-all duration-300 scale-0 transform hover:scale-110 hover:opacity-100',
         isShow && 'opacity-100 scale-100',
       )}
     >
       <ChevronUp className="size-6" />
+      <span className="sr-only">Go to top</span>
     </button>
   )
 }

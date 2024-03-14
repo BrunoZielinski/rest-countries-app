@@ -10,6 +10,7 @@ interface CountryItemProps {
 export const CountryItem = ({ data }: CountryItemProps) => {
   return (
     <Link
+      title="View country details"
       href={`/country/${data.cca3}`}
       className="bg-white rounded-lg shadow-md overflow-hidden relative cursor-pointer transition-transform transform hover:scale-105 duration-300 ease-in-out dark:bg-darkBlue"
     >
@@ -18,8 +19,9 @@ export const CountryItem = ({ data }: CountryItemProps) => {
         width={300}
         height={200}
         draggable={false}
-        src={data.flags.svg}
-        alt={data.flags.alt}
+        src={data.flags.svg || data.flags.png}
+        alt={data.flags.alt || data.name.common}
+        aria-label={data.flags.alt || data.name.common}
         className="select-none pointer-events-none aspect-[4/2] object-cover w-full"
       />
 

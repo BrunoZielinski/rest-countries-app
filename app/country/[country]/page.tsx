@@ -47,6 +47,8 @@ export default async function Page({ params }: PageProps) {
       <div className="max-w-screen-2xl space-y-12">
         <Button
           asChild
+          title="Back to home page"
+          aria-label="Back to home page"
           className="shadow-lg dark:bg-darkBlue dark:text-white gap-2 px-8 hover:opacity-75 transition-opacity group bg-white text-black hover:bg-white"
         >
           <Link href="/">
