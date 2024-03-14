@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPlaiceholder } from 'plaiceholder'
+import { Skeleton } from '@/components/ui/skeleton'
 
 import { Country } from '@/types'
 
@@ -50,5 +51,11 @@ export const CountryItem = async ({ data }: CountryItemProps) => {
         </ul>
       </div>
     </Link>
+  )
+}
+
+export const CountryItemSkeleton = () => {
+  return (
+    <Skeleton className="bg-gray-300 aspect-[4/2] w-full rounded-lg shadow-md transition-all transform hover:scale-105 dark:bg-darkBlue" />
   )
 }

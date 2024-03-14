@@ -1,8 +1,10 @@
+import { Suspense } from 'react'
+
 import { getCountries } from '@/actions'
 import { Search } from './_components/search'
 import { Region } from './_components/region'
-import { CountryItem } from './_components/country-item'
 import { ButtonToTop } from './_components/button-to-top'
+import { CountryItem, CountryItemSkeleton } from './_components/country-item'
 
 interface PageProps {
   searchParams: {
@@ -47,7 +49,9 @@ export default async function Page({
       <div className="flex justify-center">
         <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-screen-2xl">
           {filteredCountries.map(country => (
-            <CountryItem data={country} key={country.cca3} />
+            <Suspense key={country.cca3} fallback={<CountryItemSkeleton />}>
+              <CountryItem data={country} />
+            </Suspense>
           ))}
 
           {filteredCountries.length === 0 && (
