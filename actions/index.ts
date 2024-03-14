@@ -1,6 +1,7 @@
 'use server'
 
 import { Country } from '@/types'
+import { getPlaiceholder } from 'plaiceholder'
 
 export const getCountries = async (): Promise<Country[] | null> => {
   try {
@@ -29,6 +30,22 @@ export const getCountry = async (id: string): Promise<Country | null> => {
     const data = await response.json()
 
     return data[0]
+  } catch (error) {
+    return null
+  }
+}
+
+export const getCountriesImageBase64 = async (
+  flags: string,
+): Promise<string | null> => {
+  try {
+    const buffer = await fetch(flags).then(async res => {
+      return Buffer.from(await res.arrayBuffer())
+    })
+
+    const { base64 } = await getPlaiceholder(buffer)
+
+    return base64
   } catch (error) {
     return null
   }

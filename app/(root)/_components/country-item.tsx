@@ -1,20 +1,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getPlaiceholder } from 'plaiceholder'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { Country } from '@/types'
+import { getCountriesImageBase64 } from '@/actions'
 
 interface CountryItemProps {
   data: Country
 }
 
 export const CountryItem = async ({ data }: CountryItemProps) => {
-  const buffer = await fetch(data.flags.png).then(async res => {
-    return Buffer.from(await res.arrayBuffer())
-  })
-
-  const { base64 } = await getPlaiceholder(buffer)
+  const base64 = await getCountriesImageBase64(data.flags.png)
 
   return (
     <Link
@@ -27,7 +23,7 @@ export const CountryItem = async ({ data }: CountryItemProps) => {
         height={200}
         draggable={false}
         placeholder="blur"
-        blurDataURL={base64}
+        blurDataURL={base64 || ''}
         src={data.flags.svg || data.flags.png}
         alt={data.flags.alt || data.name.common}
         aria-label={data.flags.alt || data.name.common}
