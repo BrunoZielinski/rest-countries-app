@@ -38,7 +38,7 @@ export const Region = ({ data }: RegionProps) => {
     >
       <SelectTrigger
         title="Filter by region"
-        className="sm:w-[180px] dark:bg-darkBlue shadow-md"
+        className="sm:w-[180px] dark:bg-darkBlue shadow-md transition-colors"
       >
         <SelectValue placeholder="Filter by region" />
       </SelectTrigger>

@@ -22,7 +22,7 @@ export const Search = () => {
   }, 300)
 
   return (
-    <div className="md:max-w-sm relative flex-1">
+    <div className="md:max-w-sm relative flex-1 transition-all">
       <Input
         autoFocus
         type="search"
@@ -33,8 +33,8 @@ export const Search = () => {
         aria-label="Search for a country..."
         placeholder="Search for a country..."
         onChange={e => handleSearch(e.target.value)}
-        className="dark:bg-darkBlue shadow-md pl-12"
         defaultValue={searchParams.get('search')?.toString()}
+        className="dark:bg-darkBlue shadow-md pl-12 transition-all"
       />
 
       <SearchIcon className="absolute top-1/2 left-4 transform -translate-y-1/2 size-4 text-gray-500 dark:text-white select-none pointer-events-none" />

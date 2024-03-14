@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className="dark:bg-darkBlue bg-white p-4 md:p-6 flex items-center w-full justify-center text-center text-xs leading-tight shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1)]">
+    <footer className="dark:bg-darkBlue bg-white p-4 md:p-6 flex items-center w-full justify-center text-center text-xs leading-tight shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1)] transition-colors">
       <p>
         {new Date().getFullYear()} - Created by{' '}
         <a

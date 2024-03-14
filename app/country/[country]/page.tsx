@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import { getPlaiceholder } from 'plaiceholder'
 import { ArrowLeft, MapIcon } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -16,12 +17,20 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
-  const country = await getCountry(params.country)
-  const countries = await getCountries()
+  const [country, countries] = await Promise.all([
+    getCountry(params.country),
+    getCountries(),
+  ])
 
   if (!country || !countries) {
     return <div>Country not found</div>
   }
+
+  const buffer = await fetch(country.flags.png).then(async res => {
+    return Buffer.from(await res.arrayBuffer())
+  })
+
+  const { base64 } = await getPlaiceholder(buffer)
 
   const countriesNames = countries.map(country => {
     return {
@@ -43,13 +52,13 @@ export default async function Page({ params }: PageProps) {
   })
 
   return (
-    <main className="flex-1 p-6 flex justify-center">
+    <main className="flex-1 p-6 flex justify-center transition-colors">
       <div className="max-w-screen-2xl space-y-12">
         <Button
           asChild
           title="Back to home page"
           aria-label="Back to home page"
-          className="shadow-lg dark:bg-darkBlue dark:text-white gap-2 px-8 hover:opacity-75 transition-opacity group bg-white text-black hover:bg-white"
+          className="shadow-lg dark:bg-darkBlue dark:text-white gap-2 px-8 hover:opacity-75 transition-all group bg-white text-black hover:bg-white"
         >
           <Link href="/">
             <ArrowLeft className="size-6 group-hover:animate-pulse" />
@@ -59,9 +68,10 @@ export default async function Page({ params }: PageProps) {
 
         <div className="flex gap-12 flex-col items-center xl:flex-row">
           <Image
-            priority
             width={500}
             height={300}
+            placeholder="blur"
+            blurDataURL={base64}
             src={country.flags.svg}
             alt={country.flags.alt}
             className="drop-shadow-md select-none pointer-events-none aspect-[4/3] object-cover w-full max-w-[570px] rounded-md flex-1"
@@ -128,7 +138,7 @@ export default async function Page({ params }: PageProps) {
                 href={country.maps.googleMaps}
                 rel="noopener noreferrer nofollow external"
               >
-                <Badge className="dark:bg-darkBlue dark:text-white rounded-sm shadow-md hover:opacity-75 transition-opacity bg-lightGray text-black hover:bg-lightGray gap-2 py-1.5">
+                <Badge className="dark:bg-darkBlue dark:text-white rounded-sm shadow-md hover:opacity-75 transition-all bg-lightGray text-black hover:bg-lightGray gap-2 py-1.5">
                   <MapIcon className="size-5" />
                   Open Map
                 </Badge>
@@ -143,7 +153,7 @@ export default async function Page({ params }: PageProps) {
               <div className="flex flex-wrap gap-2">
                 {borders.map(border => (
                   <Link href={`/country/${border.code}`} key={border.code}>
-                    <Badge className="dark:bg-darkBlue dark:text-white rounded-sm shadow-md hover:opacity-75 transition-opacity bg-lightGray text-black hover:bg-lightGray">
+                    <Badge className="dark:bg-darkBlue dark:text-white rounded-sm shadow-md hover:opacity-75 transition-all bg-lightGray text-black hover:bg-lightGray">
                       {border.name}
                     </Badge>
                   </Link>

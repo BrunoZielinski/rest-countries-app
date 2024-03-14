@@ -18,7 +18,7 @@ export const ThemeSwitcher = () => {
   if (!isMounted) return null
 
   return (
-    <Tabs defaultValue={theme}>
+    <Tabs defaultValue={theme} className="transition-colors">
       <TabsList
         title="Theme switcher"
         aria-label="Theme switcher"
