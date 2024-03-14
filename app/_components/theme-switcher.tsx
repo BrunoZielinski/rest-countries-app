@@ -19,10 +19,15 @@ export const ThemeSwitcher = () => {
 
   return (
     <Tabs defaultValue={theme}>
-      <TabsList title="Theme switcher" className="border h-auto w-auto p-0.5">
+      <TabsList
+        title="Theme switcher"
+        aria-label="Theme switcher"
+        className="border h-auto w-auto p-0.5"
+      >
         <TabsTrigger
-          title="Light theme"
           value="light"
+          title="Light theme"
+          aria-label="Light theme"
           onClick={() => setTheme('light')}
         >
           <SunIcon className="size-3 sm:size-[1.2rem]" />
@@ -30,8 +35,9 @@ export const ThemeSwitcher = () => {
         </TabsTrigger>
 
         <TabsTrigger
-          title="Dark theme"
           value="dark"
+          title="Dark theme"
+          aria-label="Dark theme"
           onClick={() => setTheme('dark')}
         >
           <MoonIcon className="size-3 sm:size-[1.2rem] rotate-90 transition-all dark:rotate-0" />
@@ -39,8 +45,9 @@ export const ThemeSwitcher = () => {
         </TabsTrigger>
 
         <TabsTrigger
-          title="System theme"
           value="system"
+          title="System theme"
+          aria-label="System theme"
           onClick={() => setTheme('system')}
         >
           <DesktopIcon className="size-3 sm:size-[1.2rem]" />
